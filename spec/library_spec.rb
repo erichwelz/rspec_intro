@@ -44,5 +44,13 @@ describe "Library Object" do
         @lib.get_book("Designing for the Web").should be_an_instance_of Book
     end
 
+  it "saves the library" do
+    books = @lib.books.map { |book| book.title }
+    @lib.save "new_library.yml"
+    lib2 = Library.new "new_library.yml"
+    books2 = lib2.books.map { |book| book.title }
+    books.should eql books2
+  end
+
 end
   
